@@ -1,0 +1,149 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Scope Tests</title>
+</head>
+<body>
+<script>
+
+    const test = x => document.writeln(String(x));
+
+    let y = 0;
+    function foo() {
+        let y = 1;
+        document.writeln(String(y));
+    }
+    foo();
+    document.writeln(String(y));
+
+    const id = x => x;
+
+    // Lambda stuff
+    // id(id)
+    // (x => x)(id)
+    // (id => id)
+    // (id)
+
+    const Konst = x => y => x;
+
+    // const Kite = x => y => y; // initial solution
+    // const Kite = x => y => id(y); // refactored with beta expansion with the end goal to have no parameters
+    // const Kite = x => id; // refactored with eta reduction
+    const Kite = Konst(id); // refactored to replace function with ignored parameter and returned what was passed
+
+    // test( id(id) === id);
+    // test( Konst(id)(undefined) === id);
+    // test( Kite(undefined)(id) === id);
+    //
+    // test("--------------");
+    //
+    // const fst = x => y => x;
+    // const snd = fst(id);
+    // test(snd(1)(2))
+
+    test("--------------");
+
+    // let x = 0;
+    function two() {
+        x = 2;
+        return x;
+    }
+    two();
+
+    try { // is x in scope?
+        x
+        document.writeln(x === 0)
+    } catch (g) {
+        document.writeln(false + "catch");
+    }
+
+
+    test("--------------");
+
+    // let x = 0;
+    // (function () {
+    //     let x = 2;
+    //     return x;
+    // })();
+    // try { // is x unchanged?
+    //     document.writeln(x === 0)
+    // } catch (g) {
+    //     document.writeln(false);
+    // }
+
+    // let x = 0;
+    // (function two() {
+    //     let x = 2;
+    //     return x;
+    // })();
+    // try { // is x unchanged?
+    //     document.writeln(x === 0)
+    // } catch (g) {
+    //     document.writeln(false);
+    // }
+
+    // let x = 0;
+    // function two() {
+    //     let x = 2;
+    //     return x;
+    // }
+    //
+    // two();
+    // try { // is x unchanged?
+    //     document.writeln(x === 0)
+    // } catch (g) {
+    //     document.writeln(false);
+    // }
+
+    // x = 0;
+    // ( () => {
+    //     x = 2;
+    //     return x;
+    // })();
+    // try { // is x unchanged?
+    //     document.writeln(x === 0)
+    // } catch (g) {
+    //     document.writeln(false);
+    // }
+
+    // let x = 0;
+    // ( () => {
+    //     let x = 2;
+    //     return x;
+    // })();
+    // try { // is x unchanged?
+    //     document.writeln(x === 0)
+    // } catch (g) {
+    //     document.writeln(false);
+    // }
+
+    // let x = 0;
+    // function two() {
+    //     let x = 2;
+    //     return x;
+    // }();
+    //
+    // try { // is x unchanged?
+    //     document.writeln(x === 0)
+    // } catch (g) {
+    //     document.writeln(false);
+    // }
+
+    // const id = x => x;
+    // const konst = x => y => x;
+    //
+    // const F1 = x => y => konst(id)(x)(y);
+    // const F2 = x      => konst(id)(x);
+    // const F3 =           konst(id);
+    //
+    // test(F1(1));
+    // test("---");
+    // test(F2(1));
+    // test("---");
+    // test(F3(1));
+
+</script>
+</body>
+</html>
+

@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>MyIterator</title>
+</head>
+<body>
+<script>
+
+    // let foo = 0;
+    // const iterable = {
+    //     [Symbol.iterator]: () => ({
+    //         next: () => ({value: foo++, done: foo>100})
+    //     })
+    // }
+    //
+    // // const [a,b,c] = iterable;
+    // // console.log(a,b,c);
+    //
+    // // let i = 0;
+    // // for (const x of iterable){
+    // //     console.log(x);
+    // //     i++;
+    // //     if (i>100) {break;}
+    // // }
+    //
+    // // above is without internal calculation of value in iterator, where it's always 1
+    // for (const x of iterable){
+    //     console.log(x);
+    // }
+
+
+    const iterableParamd = (startValue, whileFn, nextValFn) => ({
+        [Symbol.iterator]: () => {
+            startValue = nextValFn(startValue) // treat as current value
+            return {
+                next: () => ({value: startValue, done: !whileFn(startValue)})
+            }
+        }
+    })
+    
+    // this loops endlessly as startValue does not get larger; look at iterator.js for solution
+    // for (const x of iterableParamd(0, n => n<100, n => n+1)){
+    //     console.log(x);
+    // }
+    
+    
+    // Iterator(startValue, whileFn, incrementFn);
+    // produces all odd numbers between 10 and 20.
+    const startValue  = 11;
+    const whileFn     = n => n < 20;
+    const incrementFn = n => n + 2;
+    const Iterator = (startValue, whileFn, incrementFn) => {
+        const next = () => {
+            const proceed = whileFn(startValue);
+            let   value = undefined;
+            if (proceed) {
+                value = startValue;
+                startValue = incrementFn(startValue);
+            }
+            // console.log(value)
+            return { value: value, done: !proceed };
+        };
+        return {
+            [Symbol.iterator]: () => ({ next })
+        };
+    };
+    
+    // console.log([...Iterator(startValue, whileFn, incrementFn)].toString() === "11,13,15,17,19")
+    const collectTest = n => oddNumbers =>  {
+        let sum = 0;
+        let c = n;
+        console.log(n, oddNumbers)
+        for (const x of oddNumbers){
+            sum += x;
+            c--;
+            // console.log(x, sum, c)
+            if (c == 0){break;}
+        }
+
+        return sum;
+    };
+    const collect = n => oddNumbers =>  {
+        let sum = 0;
+        let c = n;
+        for (const x of oddNumbers){
+            sum += x;
+            c--;
+            if (c == 0) { break; }
+        }
+        
+        return sum;
+    };
+    const oddNumbers = () => Iterator(1, x => true, x => x + 2);
+    const _x = Math.floor( 1 + Math.random() * 100);
+    // console.log(collect(3)(oddNumbers()))
+    console.log(collect(3)(oddNumbers())  ===  9)
+    console.log(collect(6)(oddNumbers())  === 36)
+    console.log(collect(_x)(oddNumbers()) === _x * _x)
+    
+</script>
+</body>
+</html>

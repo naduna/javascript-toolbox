@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title> All Quizzes </title>
+    <script src="solver.js"></script>
+    <script src="question17.js"></script>
+    <script src="question18.js"></script>
+    <script src="question23.js"></script>
+</head>
+<body>
+
+<h1>WebPr Quiz Solver</h1>
+
+<div class="inputs">
+    <label for="quizNumber">Select Quiz Number: </label>
+    <input id="quizNumber" type="number" min="0" max="40">
+    <pre id="available"></pre>
+</div>
+
+<pre>
+
+<script>
+    document.writeln("\nCheck possible errors in the console.\nRemember to add the reference for the new quiz in head and selection.");
+
+    const quizNumbers = [
+        17,
+        18,
+        23
+    ];
+
+    const availableElement = document.getElementById("available");
+    availableElement.innerText = "available numbers: " + quizNumbers.join(", ");
+
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+
+    if (urlParams.has("quiz")) {
+        const quiz = urlParams.get("quiz");
+        if (quizNumbers.find(n => n === Number(quiz))) {
+            eval(`solveAll${quiz}()`);
+        } else {
+            document.writeln(`\nQuiz number ${quiz} not found!`)
+        }
+    }
+
+    const quizNumberElement = document.getElementById("quizNumber");
+
+    const readQuizFromUrl = () => {
+        const current = window.location.href;
+        const currentQueryString = window.location.search;
+        const currentUrlParams = new URLSearchParams(currentQueryString);
+        currentUrlParams.set("quiz", quizNumberElement.value);
+
+        const newURL = new URL(current);
+
+        for (let currentUrlParam of currentUrlParams.entries()) {
+            newURL.searchParams.set(currentUrlParam[0], currentUrlParam[1]);
+        }
+        location.assign(newURL);
+    }
+
+    quizNumberElement.onblur = readQuizFromUrl;
+    quizNumberElement.onkeydown = (event) => {
+        if (event.key === "Enter") {
+            readQuizFromUrl();
+        }
+    };
+</script>
+
+</pre>
+
+</body>
+</html>

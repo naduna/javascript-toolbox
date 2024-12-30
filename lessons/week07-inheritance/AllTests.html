@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title> All Tests </title>
+    <script src="util/test.js"></script>
+</head>
+<body>
+
+<h1>All Tests in HtmlJs</h1>
+
+<pre>
+
+<script>
+
+    const testNames = [
+        'object',
+        'inheritance',
+        'util'
+    ];
+
+    testNames.forEach( testName => {
+
+
+        document.write(`<script src="${testName}/${testName}.js"></s`+'cript>'); // dirty trick of the day
+        document.write(`<script src="${testName}/${testName}Test.js"></s`+'cript>');
+
+
+    });
+
+    document.writeln("\nCheck possible 'compile' errors in the console .")
+
+    document.writeln("-------------")
+
+    // class Person {
+    // 	constructor(name){
+    // 		this.name = name
+    // 	}
+    // 	isCool() {return this.name.length > 3};
+    // }
+    // const p = new Person("Joe")
+    // p.prototype.isCool = () => true;
+    // document.writeln(p.isCool()); // TypeError: Cannot set properties of undefined (setting 'isCool')
+
+    // class Person {
+    // 	constructor(name){
+    // 		this.name = name
+    // 	}
+    // 	isCool() {return this.name.length > 3};
+    // }
+    // const p = new Person("Joe")
+    // p.isCool = () => true;
+    // document.writeln(p.isCool()); // true
+
+    // class Person {
+    // 	constructor(name){
+    // 		this.name = name
+    // 	}
+    // 	isCool() {return this.name === 'Dierk'};
+    // }
+    // const p = new Person("Dierk")
+    // document.writeln(p.isCool()); // true
+
+    // class Person {
+    // 	constructor(name) {
+    // 		this.name = name;
+    // 	}
+    // 	isCool() {return this.name.length > 3};
+    // }
+    // const p = new Person("Dierk")
+    // document.writeln(p.name === "Dierk") // true
+
+    // class Person {
+    // 	constructor(name) {
+    // 	}
+    // 	isCool() {return this.name.length > 3};
+    // }
+    // const p = new Person("Dierk")
+    // document.writeln(p.isCool()) // TypeError: Cannot read properties of undefined (reading 'length') at Person.isCool
+
+    // class Person {
+    // 	constructor() {
+    // 		this.name = name
+    // 	}
+    // 	isCool() { return this.name.length > 3 };
+    // }
+    // const p = new Person("Joe")
+    // Person.prototype.isCool = () => true;
+    // document.writeln(p.isCool()); // true
+    
+    // class Person {
+    // 	constructor(name) {
+    // 		this.name = name;
+    // 	}
+    // 	isCool() {return this.name.length > 3};
+    // }
+    // const p = new Person("Dierk")
+    // document.writeln(p.isCool()) // true
+
+    // class Person {
+    // 	isCool() {return this.name.length > 3};
+    // }
+    // const p = new Person()
+    // p.name = "Dierk"
+    // document.writeln(p.isCool()); // true
+    
+    // class Person {
+    // 	constructor(name) {
+    // 		this.name = name;
+    // 	}
+    // 	isCool() {return this.name.length > 3};
+    // }
+    // const p = new Person("Dierk")
+    // const joe = {
+    // 	name: "joe",
+    // 	cool: p.isCool
+    // };
+    // document.writeln(joe.cool()) // false, looks at joe
+
+    document.writeln("-------------")
+    
+    // class Person { }
+    // class Student { }
+    //
+    // const s = new Student();
+    // Object.setPrototypeOf(Student.prototype, Person.prototype)
+    // document.writeln(s instanceof Person) // true
+
+    
+    // class Person { }
+    // class Student { }
+    //
+    // const s = new Student();
+    // Object.setPrototypeOf(s, Person.prototype)
+    // document.writeln(s instanceof Student) // false
+
+
+    // class Person { }
+    // class Student { }
+    //
+    // const s = new Student();
+    // Object.setPrototypeOf(Student, Person)
+    // document.writeln(s instanceof Person) // false
+    
+    
+    // class Person { }
+    // class Student extends Person { }
+    //
+    // const s = new Student();
+    // document.writeln(s instanceof Student) // true
+
+    
+    // class Person { }
+    // class Student extends Person { }
+    //
+    // const s = new Student();
+    // document.writeln(s instanceof Person) // true
+
+
+    // class Person {
+    // 	constructor(name) {
+    // 		this.name = name;
+    // 	}
+    // 	isCool() {return this.name.length > 3};
+    // }
+    // const p = new Person("Dierk");
+    // document.writeln(p instanceof Person); // true
+
+
+    // class Person { }
+    // class Student { }
+    //
+    // const s = new Student();
+    // Object.setPrototypeOf(s, Student.prototype)
+    // document.writeln(s instanceof Person) // false
+
+
+    // class Person { }
+    // const p = { }
+    // Object.setPrototypeOf(p, Person)
+    // document.writeln(p instanceof Person) // false
+
+    
+    // class Person { }
+    // const p = { }
+    // Object.setPrototypeOf(p, Person.prototype)
+    // document.writeln(p instanceof Person) // true
+
+    document.writeln("-------------")
+    
+    const inc    = x => x + 1; // todo! get this thing to work
+    const double = x => x * 2;
+
+    document.writeln( inc.then(double).then(double) (1) === 8  )
+    
+</script>
+
+</pre>
+
+</body>
+</html>

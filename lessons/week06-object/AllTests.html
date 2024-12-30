@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title> All Tests </title>
+    <script src="util/test.js"></script>
+</head>
+<body>
+
+<h1>All Tests in Week 6</h1>
+
+<pre>
+
+<script>
+
+    const testNames = [
+        'object',
+        // 'oopsie'
+    ];
+
+    testNames.forEach( testName => {
+        document.write(`<script src="${testName}/${testName}.js"></s`+'cript>'); // dirty trick of the day
+        document.write(`<script src="${testName}/${testName}Test.js"></s`+'cript>');
+    });
+    document.writeln("\nCheck possible 'compile' errors in the console .")
+
+
+
+    document.writeln("----------------");
+
+    // const Empty = ( ( ) => {
+    //     function Empty() { }
+    //     return Empty;
+    // })();
+    //
+    // const empty = new Empty;
+    // document.writeln(empty instanceof Empty);
+
+    document.writeln("----------------");
+
+    // function Empty() { }
+    // const empty = new Empty();
+    //
+    // Empty.prototype.answer = 42;
+    //
+    // document.writeln(empty.answer === 42);
+
+    document.writeln("----------------");
+
+    // const Empty = ( ( ) => {
+    //     function Empty() { }
+    //     return Empty;
+    // })();
+    //
+    // const empty = Empty;
+    // document.writeln(empty instanceof Empty);
+
+    document.writeln("----------------");
+
+    const Empty = ( ( ) => {
+        function Empty() { }
+        return Empty;
+    })();
+    
+    const empty = new Empty;
+    const also = new Empty;
+
+    Empty.prototype.answer = 42;
+    
+    document.writeln(empty.answer === 42 && also.answer === 42);
+
+    document.writeln("--------Q14---------");
+    
+    // same construction for all choices
+    const Person = name => {
+        let age = 0;
+        return {
+            getAge: () => age,
+            setAge:	newAqe => age = newAqe,
+            getName: () => name,
+            setName: newName => name = newName
+        }
+    };
+    
+    const me = Person("Myself");
+    me.name = "***";
+    document.writeln(me.getName() === "***");
+    document.writeln("----------------");
+    
+    me.age = 50;
+    document.writeln(me.getAge() === 50);
+    document.writeln("----------------");
+
+    me.setAge(50);
+    document.writeln(me.getAge() === 50);
+    document.writeln("----------------");
+
+    me.setName("Sherlock");
+    document.writeln(me.getName() === "Sherlock");
+    document.writeln("----------------");
+    
+</script>
+
+</pre>
+
+</body>
+</html>
