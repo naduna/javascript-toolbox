@@ -10,7 +10,7 @@ for (let i=0; i<5; i++) { i++; console.log(i); }
 [0,1,2,3,4].forEach(i => console.log(i++));
 // -> 0,1,2,3,4
 
-[0..4].forEach(i => console.log(i++));
+[0,1,2,3,4].forEach(i => console.log(i++));
 // 0,1,2,3,4
 
 

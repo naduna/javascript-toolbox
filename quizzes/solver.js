@@ -1,6 +1,8 @@
 
 // "Quiz solver" logic
 const solveQuiz = (quizFn, quizName) => {
+    document.writeln("-------------")
+    
     // Print the quiz name
     document.writeln(`Solving quiz: ${quizName}`);
 
@@ -15,10 +17,11 @@ const solveQuiz = (quizFn, quizName) => {
     catch (ex){
         document.writeln(ex);
     }
-    document.writeln("-------------")
 };
 
 const solveQuizAsync = async (quizFn, quizName) => {
+    document.writeln("-------------")
+    
     // Print the quiz name
     document.writeln(`Solving quiz: ${quizName}`);
 
@@ -33,7 +36,6 @@ const solveQuizAsync = async (quizFn, quizName) => {
     catch (ex){
         document.writeln(ex);
     }
-    document.writeln("-------------")
 };
 
 const printQuizSection = nr => {

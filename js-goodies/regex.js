@@ -52,7 +52,7 @@ const matches2 = str.matchAll(/(\w\w\w)(.*?)\1/g);
 
 
 
-const [a,b, ..rest] = "12345";
+const [a,b, ...rest] = "12345";
 console.log(a,b,rest);
 // -> 1  2  ["3","4","5"]
 
