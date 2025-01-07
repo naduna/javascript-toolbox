@@ -122,6 +122,43 @@ const q18_12 = () => {
     document.writeln( handle( it => it.push(1) ).length === 2);
 }
 
+
+
+// Assignment: failsafe callback
+// Attempt number 1 of at most 3 attempts
+// Provide a function 'failSafe' that - in curried style - takes
+// - a default value
+// - a callback function
+// - an argument to the callback function
+// that returns whatever the callback function returns given its argument
+// or the default value if the callback function throws an Error.
+//     Note: see how the tests make use of failSafe.
+//     Remaining chars: 512
+// Your solution will be tested against:
+//     const doError    = x => { throw new Error() };
+// const errorCount = failSafe (1) (doError);
+// failSafe (false) (x=>x) (true) && failSafe (true) (doError) (null) && errorCount(null) === 1
+
+const q18a = () => {
+    // my input
+    const failSafe = d => f => i => {
+      try {
+          return f(i);
+      }
+      catch (e) {
+          return d;
+      }
+    };
+
+    // test code
+    const doError    = x => { throw new Error() };
+    const errorCount = failSafe (1) (doError);
+
+    const result = failSafe (false) (x=>x) (true) && failSafe (true) (doError) (null) && errorCount(null) === 1;
+    document.writeln(result);
+};
+
+
 const solveAll18 = () => {
     printQuizSection(18);
     
@@ -137,4 +174,6 @@ const solveAll18 = () => {
     solveQuiz(q18_10, "q18_10");
     solveQuiz(q18_11, "q18_11");
     solveQuiz(q18_12, "q18_12");
+    
+    solveQuiz(q18a, "q18a");
 }
