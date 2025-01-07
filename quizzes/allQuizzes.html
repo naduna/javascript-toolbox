@@ -7,6 +7,7 @@
     <script src="question18.js"></script>
     <script src="question23.js"></script>
     <script src="question24.js"></script>
+    <script src="question26.js"></script>
 </head>
 <body>
 
@@ -27,7 +28,8 @@
         17,
         18,
         23,
-        24
+        24,
+        26
     ];
 
     const availableElement = document.getElementById("available");
@@ -36,10 +38,15 @@
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
 
+    const solveQuizByNr = async (quizNr) => {
+        await eval(`solveAll${quizNr}()`);
+    }
+
     if (urlParams.has("quiz")) {
         const quiz = urlParams.get("quiz");
         if (quizNumbers.find(n => n === Number(quiz))) {
-            eval(`solveAll${quiz}()`);
+            // eval(`solveAll${quiz}()`);
+            solveQuizByNr(quiz)
         } else {
             document.writeln(`\nQuiz number ${quiz} not found!`)
         }

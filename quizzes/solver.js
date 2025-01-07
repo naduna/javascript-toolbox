@@ -10,7 +10,7 @@ const solveQuiz = (quizFn, quizName) => {
 
         // Capture the result of running the function (if it writes output)
         document.writeln("Result:");
-        quizFn(); // Execute the function (this will execute document.writeln)
+        return quizFn(); // Execute the function (this will execute document.writeln)
     }
     catch (ex){
         document.writeln(ex);
@@ -28,7 +28,7 @@ const solveQuizAsync = async (quizFn, quizName) => {
 
         // Capture the result of running the function (if it writes output)
         document.writeln("Result:");
-        await quizFn(); // Execute the function (this will execute document.writeln)
+        return await quizFn(); // Execute the function (this will execute document.writeln)
     }
     catch (ex){
         document.writeln(ex);
