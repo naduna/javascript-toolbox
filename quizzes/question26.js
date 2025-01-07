@@ -364,9 +364,9 @@ const originalWriteLn = document.writeln.bind(document);
 let writeBuffer = [];
 
 // Utility to redirect document.writeln to the buffer
-const redirectWriteLn = () => {
+const redirectWriteLn = (quizName) => {
     document.writeln = (text) => {
-        writeBuffer.push(text); // Append output to the buffer
+        writeBuffer.push(quizName + ": " + text); // Append output to the buffer
     };
 };
 
@@ -378,7 +378,7 @@ const restoreWriteLn = () => {
 };
 
 const solveQuizWrappedInPromiseAsync = (quizFn, quizName) => new Promise(resolve => {
-    redirectWriteLn();
+    redirectWriteLn(quizName);
     solveQuiz(quizFn, quizName);
     resolve();
     restoreWriteLn();
@@ -388,16 +388,16 @@ const solveQuizWrappedInPromiseAsync = (quizFn, quizName) => new Promise(resolve
 const solveAll26 = async () => {
     printQuizSection(26);
     
-    await solveQuizWrappedInPromiseAsync(q26_1, "q26_1");
-    await solveQuizWrappedInPromiseAsync(q26_2, "q26_2");
-    await solveQuizWrappedInPromiseAsync(q26_3, "q26_3");
-    await solveQuizWrappedInPromiseAsync(q26_4, "q26_4");
-    await solveQuizWrappedInPromiseAsync(q26_5, "q26_5");
-    await solveQuizWrappedInPromiseAsync(q26_6, "q26_6");
+    // await solveQuizWrappedInPromiseAsync(q26_1, "q26_1");
+    // await solveQuizWrappedInPromiseAsync(q26_2, "q26_2");
+    // await solveQuizWrappedInPromiseAsync(q26_3, "q26_3");
+    // await solveQuizWrappedInPromiseAsync(q26_4, "q26_4");
+    // await solveQuizWrappedInPromiseAsync(q26_5, "q26_5");
+    // await solveQuizWrappedInPromiseAsync(q26_6, "q26_6");
     await solveQuizWrappedInPromiseAsync(q26_7, "q26_7");
-    await solveQuizWrappedInPromiseAsync(q26_8, "q26_8");
-    await solveQuizWrappedInPromiseAsync(q26_9, "q26_9");
-    await solveQuizWrappedInPromiseAsync(q26_10, "q26_10");
-    await solveQuizWrappedInPromiseAsync(q26_11, "q26_11");
-    await solveQuizWrappedInPromiseAsync(q26_12, "q26_12");
+    // await solveQuizWrappedInPromiseAsync(q26_8, "q26_8");
+    // await solveQuizWrappedInPromiseAsync(q26_9, "q26_9");
+    // await solveQuizWrappedInPromiseAsync(q26_10, "q26_10");
+    // await solveQuizWrappedInPromiseAsync(q26_11, "q26_11");
+    // await solveQuizWrappedInPromiseAsync(q26_12, "q26_12");
 }
