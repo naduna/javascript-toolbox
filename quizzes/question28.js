@@ -43,7 +43,7 @@ const q28_4 = () => {
     }
 
     let it = [];
-    document.writeln(handle(() => it.push(1)).length === 1);
+    document.writeln(handle(it => it.push(1)).length === 1);
 
     // shows 'true'?
 }
